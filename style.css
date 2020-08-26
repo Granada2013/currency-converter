@@ -59,13 +59,13 @@ select{
 
 #input__sum{
   display: block;
-  width: 304px;
+  width: 295.33px;
   margin-bottom: 2%;
   margin-top: 2%;
 }
 
 .result, .error_message{
-  width: 304px;
+  width: 295px;
   padding: 5px 3px;
   margin-top: 1%;
   font-weight: bold;
