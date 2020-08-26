@@ -1,0 +1,77 @@
+.my-table{
+  display: table;
+  margin-top: 4%;
+  border: 2px solid rgb(13, 78, 39);
+  border-radius: 5px;
+}
+
+.my-row{
+  display: table-row;
+}
+
+#curr_date, #prev_date{
+
+  display: table-cell;
+  text-align: right;
+  padding-top: 4%;
+  padding-right: 4%;
+  font-size: 0.7em;
+  color: rgb(117, 115, 115);
+}
+
+.currency__val{
+  display: table-cell;
+  vertical-align: middle;
+  width: 100px;
+  height: 80px;
+  padding-right: 4%;
+  text-align: right;
+  font-weight: bold;
+}
+
+.currency__sign{
+  display: table-cell;
+  vertical-align: middle;
+
+}
+
+.curr_logo{
+  width: 60px;
+}
+
+.row1{
+  background-color: rgba(231, 237, 235, 0.4);
+}
+
+a{
+  font-size: 0.8em;
+}
+
+select{
+  border: none;
+}
+
+.conv_options{
+  font-weight: 600;
+  margin-top: 2%;
+
+}
+
+#input__sum{
+  display: block;
+  width: 304px;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+.result, .error_message{
+  width: 304px;
+  padding: 5px 3px;
+  margin-top: 1%;
+  font-weight: bold;
+}
+
+.error_message{
+  color: rgb(235, 9, 9);
+  width: auto;
+}
