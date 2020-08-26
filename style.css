@@ -1,8 +1,8 @@
 .my-table{
   display: table;
   margin-top: 4%;
-  border: 2px solid rgb(13, 78, 39);
-  border-radius: 5px;
+  border-top: 2px solid rgb(13, 78, 39);
+  border-bottom: 2px solid rgb(13, 78, 39);
 }
 
 .my-row{
