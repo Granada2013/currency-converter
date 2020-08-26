@@ -1,6 +1,5 @@
 "use strict"
 
-
 const container = document.querySelector('.box'),
       form = document.querySelector('form'),
       inputSum = document.querySelector('#input__sum'),
@@ -15,9 +14,8 @@ request.send();
 request.addEventListener('load', function() {
   if (request.status === 200) {
     container.hidden = false;
-    const data = JSON.parse(request.response);
-    console.log(data);
-    const currDate = data.Date.split('T'),
+    const data = JSON.parse(request.response),
+          currDate = data.Date.split('T'),
           prevDate = data.PreviousDate.split('T');
 
     document.querySelector('#curr_date').textContent = currDate[0];
@@ -73,4 +71,4 @@ request.addEventListener('load', function() {
 
 request.addEventListener('error', function () {
   document.querySelector('.error_screen').hidden = false;
-})
+});
