@@ -5,27 +5,40 @@ const container = document.querySelector('.box'),
       inputSum = document.querySelector('#input__sum'),
       convertFrom = document.querySelector('#currency_from'),
       convertTo = document.querySelector('#currency_to'),
-      resultSum = document.createElement('div'),
-      request = new XMLHttpRequest();
+      resultSum = document.createElement('div');
 
-request.open('GET', 'https://www.cbr-xml-daily.ru/daily_json.js');
-request.send();
 
-request.addEventListener('load', function() {
-  if (request.status === 200) {
-    container.hidden = false;
-    const data = JSON.parse(request.response),
-          currDate = data.Date.split('T'),
+fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+  .then(response => response.json())
+  .then(data => {
+    const currDate = data.Date.split('T'),
           prevDate = data.PreviousDate.split('T');
 
+    container.hidden = false;
     document.querySelector('#curr_date').textContent = currDate[0];
     document.querySelector('#prev_date').textContent = prevDate[0];
 
     document.querySelector('#usd_val_prev').textContent = `${data.Valute.USD.Previous}₽`;
     document.querySelector('#usd_val_curr').textContent = `${data.Valute.USD.Value}₽`;
 
+    if (data.Valute.USD.Previous > data.Valute.USD.Value) {
+      document.querySelectorAll('.currency__sign')[1]
+      .insertAdjacentHTML('beforeend', "<img class='ml-2' src='icons/down-arrow.svg' width='20x'>");
+    } else if (data.Valute.USD.Previous < data.Valute.USD.Value) {
+      document.querySelectorAll('.currency__sign')[1]
+      .insertAdjacentHTML('beforeend', "<img class='ml-2' src='icons/up-arrow.svg' width='20x'>");
+    }
+
     document.querySelector('#eur_val_prev').textContent = `${data.Valute.EUR.Previous}₽`;
     document.querySelector('#eur_val_curr').textContent = `${data.Valute.EUR.Value}₽`;
+
+    if (data.Valute.EUR.Previous > data.Valute.EUR.Value) {
+      document.querySelectorAll('.currency__sign')[2]
+      .insertAdjacentHTML('beforeend', "<img class='ml-2' src='icons/down-arrow.svg' width='20x'>");
+    } else if (data.Valute.EUR.Previous < data.Valute.EUR.Value) {
+      document.querySelectorAll('.currency__sign')[2]
+      .insertAdjacentHTML('beforeend', "<img class='ml-2' src='icons/up-arrow.svg' width='20x'>");
+    }
 
     convertFrom.addEventListener('change', function () {
       convertTo.disabled = false;
@@ -39,7 +52,7 @@ request.addEventListener('load', function() {
         convertTo.options[2].hidden = true;
         convertTo.options[3].hidden = true;
       }
-    })
+    });
 
     form.addEventListener('submit', function(event) {
       event.preventDefault();
@@ -64,11 +77,6 @@ request.addEventListener('load', function() {
       resultSum.classList.remove('error_message');
       form.insertAdjacentElement('afterend', resultSum);
     });
-  } else {
-    document.querySelector('.error_screen').hidden = false;
-  }
-});
-
-request.addEventListener('error', function () {
-  document.querySelector('.error_screen').hidden = false;
-});
+  }).catch(error => {
+      document.querySelector('.error_screen').hidden = false;
+    });
