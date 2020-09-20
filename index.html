@@ -11,11 +11,10 @@
     <title>Calc</title>
 
 </head>
-  <div class="container">
+  <header class="container">
     <h2 class="mt-4">Currency converter</h2>
-  </div>
-
-  <div class="container box" hidden>
+  </header>
+  <main class="container box" hidden>
     <div class="my-table">
       <div class="my-row row0">
         <div class="currency__sign"></div>
@@ -40,11 +39,7 @@
         <div id="eur_val_curr" class="currency__val"></div>
       </div>
     </div>
-    <a href="https://www.cbr.ru/"><i>Source</i></a>
-
-
-
-
+    <a href="https://www.cbr.ru/"><cite>Source</cite></a>
     <form class="converter" >
       <div class="conv_options">
         I want to convert
@@ -64,14 +59,12 @@
       </div>
       <input class="form-control" id="input__sum" type="text" placeholder="Insert sum e.g.: 333.3">
       <input class="btn btn-primary" type="submit" value="Convert">
-
     </form>
-  </div>
+  </main>
 
   <div class="container error_screen" hidden>
     <img src="img/Sad_Cloud.gif" alt="" height="250px">
     <p>Ooops! The site is temporary unavaliable. We will fix it soon!</p>
-
   </div>
 
 

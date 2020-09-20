@@ -5,11 +5,11 @@ const container = document.querySelector('.box'),
       inputSum = document.querySelector('#input__sum'),
       convertFrom = document.querySelector('#currency_from'),
       convertTo = document.querySelector('#currency_to'),
-      resultSum = document.createElement('div');
+      resultSum = document.createElement('output');
 
 
 fetch('https://www.cbr-xml-daily.ru/daily_json.js')
-  .then(response => response.json())
+  .then( response => response.json() )
   .then(data => {
     const currDate = data.Date.split('T'),
           prevDate = data.PreviousDate.split('T');
@@ -65,12 +65,12 @@ fetch('https://www.cbr-xml-daily.ru/daily_json.js')
       }
 
       if (convertTo.value === convertFrom.value) {
-        resultSum.textContent = (+inputSum.value).toFixed(4);
+        resultSum.textContent = (+inputSum.value).toFixed(2);
       } else {
         if (convertFrom.value === 'RUB') {
-          resultSum.textContent = (+inputSum.value / data.Valute[convertTo.value].Value).toFixed(4);
+          resultSum.textContent = (+inputSum.value / data.Valute[convertTo.value].Value).toFixed(2);
         } else {
-          resultSum.textContent = (+inputSum.value * data.Valute[convertFrom.value].Value).toFixed(4);
+          resultSum.textContent = (+inputSum.value * data.Valute[convertFrom.value].Value).toFixed(2);
         }
       }
       resultSum.classList.add('result');
